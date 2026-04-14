@@ -105,14 +105,60 @@ If `$HMAILPASSWORD` is left empty, the script will securely prompt for the passw
 
 ### 5.2 Export Formats
 
-| Format | Extension | Use Case |
-|--------|-----------|----------|
-| `CSV` | `.csv` | Spreadsheet analysis / Bulk imports |
-| `JSON` | `.json` | Web APIs / Modern application data |
-| `Markdown` | `.md` | Documentation / GitHub Wiki content |
-| `JS` | `.js` | JavaScript modules / Frontend integration |
-| `PHP` | `.php` | PHP Constants / Backend inclusion |
-| `XML` | `.xml` | Legacy systems / Structured data |
+| Format     | Extension | Use Case                                  |
+|-----------|-----------|--------------------------------------------|
+| `CSV`     | `.csv`    | Spreadsheet analysis / Bulk imports        |
+| `JSON`    | `.json`   | Web APIs / Modern application data         |
+| `Markdown`| `.md`     | Documentation / GitHub Wiki content        |
+| `JS`      | `.js`     | JavaScript modules / Frontend integration  |
+| `PHP`     | `.php`    | PHP Constants / Backend inclusion          |
+| `XML`     | `.xml`    | Legacy systems / Structured data           |
+
+#### 5.2.1 Sample output: Accounts
+
+All formats below show the same logical dataset: two example accounts from `example.com` with the exact field set produced by `Get-DomainAccounts`.[file:1]
+
+| Format | Sample output (excerpt) |
+|--------|-------------------------|
+| `CSV` | `Domain,Address,Active,IsAD,MaxSizeMB,PasswordExpirationEnabled,PasswordExpires,VacationMessageIsOn,ForwardEnabled,ForwardAddress,SignatureEnabled,AdminLevel,PersonFirstName,PersonLastName,Created,LastLogon`<br>`example.com,user1@example.com,True,False,2048,False,,False,False,,False,0,John,Doe,2026-04-14T10:15:30Z,2026-04-14T11:00:00Z`<br>`example.com,user2@example.com,True,False,1024,False,,False,False,,False,0,Jane,Doe,2026-04-14T10:16:02Z,2026-04-14T11:05:00Z` |
+| `JSON` | `[`<br>`  {`<br>`    "Domain": "example.com",`<br>`    "Address": "user1@example.com",`<br>`    "Active": true,`<br>`    "IsAD": false,`<br>`    "MaxSizeMB": 2048,`<br>`    "PasswordExpirationEnabled": false,`<br>`    "PasswordExpires": null,`<br>`    "VacationMessageIsOn": false,`<br>`    "ForwardEnabled": false,`<br>`    "ForwardAddress": null,`<br>`    "SignatureEnabled": false,`<br>`    "AdminLevel": 0,`<br>`    "PersonFirstName": "John",`<br>`    "PersonLastName": "Doe",`<br>`    "Created": "2026-04-14T10:15:30Z",`<br>`    "LastLogon": "2026-04-14T11:00:00Z"`<br>`  },`<br>`  {`<br>`    "Domain": "example.com",`<br>`    "Address": "user2@example.com",`<br>`    "Active": true,`<br>`    "IsAD": false,`<br>`    "MaxSizeMB": 1024,`<br>`    "PasswordExpirationEnabled": false,`<br>`    "PasswordExpires": null,`<br>`    "VacationMessageIsOn": false,`<br>`    "ForwardEnabled": false,`<br>`    "ForwardAddress": null,`<br>`    "SignatureEnabled": false,`<br>`    "AdminLevel": 0,`<br>`    "PersonFirstName": "Jane",`<br>`    "PersonLastName": "Doe",`<br>`    "Created": "2026-04-14T10:16:02Z",`<br>`    "LastLogon": "2026-04-14T11:05:00Z"`<br>`  }`<br>`]` |
+| `Markdown` | `| Domain      | Address             | Active | IsAD | MaxSizeMB | PasswordExpirationEnabled | PasswordExpires | VacationMessageIsOn | ForwardEnabled | ForwardAddress | SignatureEnabled | AdminLevel | PersonFirstName | PersonLastName | Created                  | LastLogon                |`<br>`| :---------- | :------------------ | :----- | :--- | :-------- | :------------------------ | :-------------- | :-------------------- | :------------- | :------------- | :---------------- | :--------- | :--------------- | :-------------- | :----------------------- | :----------------------- |`<br>`| example.com | user1@example.com   | True   | False | 2048     | False                     |                 | False                | False          |                 | False            | 0         | John             | Doe             | 2026-04-14T10:15:30Z     | 2026-04-14T11:00:00Z     |`<br>`| example.com | user2@example.com   | True   | False | 1024     | False                     |                 | False                | False          |                 | False            | 0         | Jane             | Doe             | 2026-04-14T10:16:02Z     | 2026-04-14T11:05:00Z     | |
+| `JS` | `/**`<br>` * Auto-generated hMailServer export`<br>` * Format: JavaScript Module`<br>` */`<br>`const example_com_accounts = [`<br>`  {`<br>`    Domain: "example.com",`<br>`    Address: "user1@example.com",`<br>`    Active: true,`<br>`    IsAD: false,`<br>`    MaxSizeMB: 2048,`<br>`    PasswordExpirationEnabled: false,`<br>`    PasswordExpires: null,`<br>`    VacationMessageIsOn: false,`<br>`    ForwardEnabled: false,`<br>`    ForwardAddress: null,`<br>`    SignatureEnabled: false,`<br>`    AdminLevel: 0,`<br>`    PersonFirstName: "John",`<br>`    PersonLastName: "Doe",`<br>`    Created: "2026-04-14T10:15:30Z",`<br>`    LastLogon: "2026-04-14T11:00:00Z"`<br>`  },`<br>`  {`<br>`    Domain: "example.com",`<br>`    Address: "user2@example.com",`<br>`    Active: true,`<br>`    IsAD: false,`<br>`    MaxSizeMB: 1024,`<br>`    PasswordExpirationEnabled: false,`<br>`    PasswordExpires: null,`<br>`    VacationMessageIsOn: false,`<br>`    ForwardEnabled: false,`<br>`    ForwardAddress: null,`<br>`    SignatureEnabled: false,`<br>`    AdminLevel: 0,`<br>`    PersonFirstName: "Jane",`<br>`    PersonLastName: "Doe",`<br>`    Created: "2026-04-14T10:16:02Z",`<br>`    LastLogon: "2026-04-14T11:05:00Z"`<br>`  }`<br>`];`<br>`export default example_com_accounts;` |
+| `PHP` | `<?php`<br>`/**`<br>` * Auto-generated hMailServer export`<br>` * Format: PHP Constants`<br>` */`<br>`const DATA_EXAMPLE_COM_ACCOUNTS = [`<br>`  [`<br>`    'Domain' => 'example.com',`<br>`    'Address' => 'user1@example.com',`<br>`    'Active' => true,`<br>`    'IsAD' => false,`<br>`    'MaxSizeMB' => 2048,`<br>`    'PasswordExpirationEnabled' => false,`<br>`    'PasswordExpires' => null,`<br>`    'VacationMessageIsOn' => false,`<br>`    'ForwardEnabled' => false,`<br>`    'ForwardAddress' => null,`<br>`    'SignatureEnabled' => false,`<br>`    'AdminLevel' => 0,`<br>`    'PersonFirstName' => 'John',`<br>`    'PersonLastName' => 'Doe',`<br>`    'Created' => '2026-04-14T10:15:30Z',`<br>`    'LastLogon' => '2026-04-14T11:00:00Z'`<br>`  ],`<br>`  [`<br>`    'Domain' => 'example.com',`<br>`    'Address' => 'user2@example.com',`<br>`    'Active' => true,`<br>`    'IsAD' => false,`<br>`    'MaxSizeMB' => 1024,`<br>`    'PasswordExpirationEnabled' => false,`<br>`    'PasswordExpires' => null,`<br>`    'VacationMessageIsOn' => false,`<br>`    'ForwardEnabled' => false,`<br>`    'ForwardAddress' => null,`<br>`    'SignatureEnabled' => false,`<br>`    'AdminLevel' => 0,`<br>`    'PersonFirstName' => 'Jane',`<br>`    'PersonLastName' => 'Doe',`<br>`    'Created' => '2026-04-14T10:16:02Z',`<br>`    'LastLogon' => '2026-04-14T11:05:00Z'`<br>`  ],`<br>`];`<br>`return DATA_EXAMPLE_COM_ACCOUNTS;` |
+| `XML` | `<?xml version="1.0" encoding="UTF-8"?>`<br>`<export>`<br>`  <item>`<br>`    <Domain>example.com</Domain>`<br>`    <Address>user1@example.com</Address>`<br>`    <Active>1</Active>`<br>`    <IsAD>0</IsAD>`<br>`    <MaxSizeMB>2048</MaxSizeMB>`<br>`    <PasswordExpirationEnabled>0</PasswordExpirationEnabled>`<br>`    <PasswordExpires />`<br>`    <VacationMessageIsOn>0</VacationMessageIsOn>`<br>`    <ForwardEnabled>0</ForwardEnabled>`<br>`    <ForwardAddress />`<br>`    <SignatureEnabled>0</SignatureEnabled>`<br>`    <AdminLevel>0</AdminLevel>`<br>`    <PersonFirstName>John</PersonFirstName>`<br>`    <PersonLastName>Doe</PersonLastName>`<br>`    <Created>2026-04-14T10:15:30Z</Created>`<br>`    <LastLogon>2026-04-14T11:00:00Z</LastLogon>`<br>`  </item>`<br>`  <item>`<br>`    <Domain>example.com</Domain>`<br>`    <Address>user2@example.com</Address>`<br>`    <Active>1</Active>`<br>`    <IsAD>0</IsAD>`<br>`    <MaxSizeMB>1024</MaxSizeMB>`<br>`    <PasswordExpirationEnabled>0</PasswordExpirationEnabled>`<br>`    <PasswordExpires />`<br>`    <VacationMessageIsOn>0</VacationMessageIsOn>`<br>`    <ForwardEnabled>0</ForwardEnabled>`<br>`    <ForwardAddress />`<br>`    <SignatureEnabled>0</SignatureEnabled>`<br>`    <AdminLevel>0</AdminLevel>`<br>`    <PersonFirstName>Jane</PersonFirstName>`<br>`    <PersonLastName>Doe</PersonLastName>`<br>`    <Created>2026-04-14T10:16:02Z</Created>`<br>`    <LastLogon>2026-04-14T11:05:00Z</LastLogon>`<br>`  </item>`<br>`</export>` |
+
+#### 5.2.2 Sample output: Aliases
+
+This dataset matches the object shape returned by `Get-DomainAliases` (`Domain`, `Name`, `Address`, `Value`, `Active`, `Created`).[file:1]
+
+Example aliases for `example.com`:
+
+- `sales@example.com` → `user1@example.com`
+- `support@example.com` → `user2@example.com`
+
+| Format | Sample output (excerpt) |
+|--------|-------------------------|
+| `CSV` | `Domain,Name,Address,Value,Active,Created`<br>`example.com,sales,sales@example.com,user1@example.com,True,2026-04-14T10:20:00Z`<br>`example.com,support,support@example.com,user2@example.com,True,2026-04-14T10:21:00Z` |
+| `JSON` | `[`<br>`  {`<br>`    "Domain": "example.com",`<br>`    "Name": "sales",`<br>`    "Address": "sales@example.com",`<br>`    "Value": "user1@example.com",`<br>`    "Active": true,`<br>`    "Created": "2026-04-14T10:20:00Z"`<br>`  },`<br>`  {`<br>`    "Domain": "example.com",`<br>`    "Name": "support",`<br>`    "Address": "support@example.com",`<br>`    "Value": "user2@example.com",`<br>`    "Active": true,`<br>`    "Created": "2026-04-14T10:21:00Z"`<br>`  }`<br>`]` |
+| `Markdown` | `| Domain      | Name    | Address            | Value              | Active | Created                  |`<br>`| :---------- | :------ | :------------------ | :------------------ | :----- | :----------------------- |`<br>`| example.com | sales   | sales@example.com   | user1@example.com   | True   | 2026-04-14T10:20:00Z     |`<br>`| example.com | support | support@example.com | user2@example.com   | True   | 2026-04-14T10:21:00Z     | |
+| `JS` | `const example_com_aliases = [`<br>`  { Domain: "example.com", Name: "sales", Address: "sales@example.com", Value: "user1@example.com", Active: true, Created: "2026-04-14T10:20:00Z" },`<br>`  { Domain: "example.com", Name: "support", Address: "support@example.com", Value: "user2@example.com", Active: true, Created: "2026-04-14T10:21:00Z" }`<br>`];`<br>`export default example_com_aliases;` |
+| `PHP` | `const DATA_EXAMPLE_COM_ALIASES = [`<br>`  ['Domain' => 'example.com', 'Name' => 'sales', 'Address' => 'sales@example.com', 'Value' => 'user1@example.com', 'Active' => true, 'Created' => '2026-04-14T10:20:00Z'],`<br>`  ['Domain' => 'example.com', 'Name' => 'support', 'Address' => 'support@example.com', 'Value' => 'user2@example.com', 'Active' => true, 'Created' => '2026-04-14T10:21:00Z'],`<br>`];` |
+| `XML` | `<export>`<br>`  <item>`<br>`    <Domain>example.com</Domain>`<br>`    <Name>sales</Name>`<br>`    <Address>sales@example.com</Address>`<br>`    <Value>user1@example.com</Value>`<br>`    <Active>1</Active>`<br>`    <Created>2026-04-14T10:20:00Z</Created>`<br>`  </item>`<br>`  <item>`<br>`    <Domain>example.com</Domain>`<br>`    <Name>support</Name>`<br>`    <Address>support@example.com</Address>`<br>`    <Value>user2@example.com</Value>`<br>`    <Active>1</Active>`<br>`    <Created>2026-04-14T10:21:00Z</Created>`<br>`  </item>`<br>`</export>` |
+
+#### 5.2.3 Sample output: Distribution list members
+
+In advanced mode (`Mode = 'B'`) the script also exports distribution list members using the shape returned by `Get-DomainDistributionLists().Members` (`Domain`, `DistributionList`, `RecipientAddress`).[file:1]
+
+Example: list `team@example.com` with two recipients.
+
+| Format | Sample output (excerpt) |
+|--------|-------------------------|
+| `CSV` | `Domain,DistributionList,RecipientAddress`<br>`example.com,team@example.com,user1@example.com`<br>`example.com,team@example.com,user2@example.com` |
+| `JSON` | `[`<br>`  {`<br>`    "Domain": "example.com",`<br>`    "DistributionList": "team@example.com",`<br>`    "RecipientAddress": "user1@example.com"`<br>`  },`<br>`  {`<br>`    "Domain": "example.com",`<br>`    "DistributionList": "team@example.com",`<br>`    "RecipientAddress": "user2@example.com"`<br>`  }`<br>`]` |
+| `Markdown` | `| Domain      | DistributionList   | RecipientAddress    |`<br>`| :---------- | :------------------- | :------------------- |`<br>`| example.com | team@example.com    | user1@example.com    |`<br>`| example.com | team@example.com    | user2@example.com    | |
+| `JS` | `const example_com_distribution_list_members = [`<br>`  { Domain: "example.com", DistributionList: "team@example.com", RecipientAddress: "user1@example.com" },`<br>`  { Domain: "example.com", DistributionList: "team@example.com", RecipientAddress: "user2@example.com" }`<br>`];`<br>`export default example_com_distribution_list_members;` |
+| `PHP` | `const DATA_EXAMPLE_COM_DISTRIBUTION_LIST_MEMBERS = [`<br>`  ['Domain' => 'example.com', 'DistributionList' => 'team@example.com', 'RecipientAddress' => 'user1@example.com'],`<br>`  ['Domain' => 'example.com', 'DistributionList' => 'team@example.com', 'RecipientAddress' => 'user2@example.com'],`<br>`];` |
+| `XML` | `<export>`<br>`  <item>`<br>`    <Domain>example.com</Domain>`<br>`    <DistributionList>team@example.com</DistributionList>`<br>`    <RecipientAddress>user1@example.com</RecipientAddress>`<br>`  </item>`<br>`  <item>`<br>`    <Domain>example.com</Domain>`<br>`    <DistributionList>team@example.com</DistributionList>`<br>`    <RecipientAddress>user2@example.com</RecipientAddress>`<br>`  </item>`<br>`</export>` |
 
 ### 5.3 Operation Modes
 
