@@ -4,7 +4,6 @@ A comprehensive, professional-grade PowerShell 7 utility for extracting domains,
 
 [![PowerShell](https://img.shields.io/badge/PowerShell-7.0%2B-blue.svg)](https://microsoft.com/powershell)
 [![hMailServer](https://img.shields.io/badge/hMailServer-5.6%2B-green.svg)](https://www.hmailserver.com)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Windows-lightgrey.svg)](https://microsoft.com/windows)
 
 ## 📋 Table of Contents
