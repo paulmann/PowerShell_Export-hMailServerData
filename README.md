@@ -242,7 +242,7 @@ Professional contributions are welcome! If you find a bug or have a feature requ
 
 ## 9. License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the PolyForm Noncommercial License 1.0.0 - see the [LICENSE](LICENSE) file for details.
 
 ## 10. Acknowledgments
 
